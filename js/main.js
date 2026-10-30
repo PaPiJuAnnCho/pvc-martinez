@@ -210,3 +210,6 @@
     b.setAttribute('aria-label', paused ? 'Reproducir video' : 'Pausar video');
   });
 })();
+
+// Oculta los recuadros de video cuyo archivo no está publicado
+document.querySelectorAll('.gv video').forEach(v => v.addEventListener('error', () => v.closest('.gv').remove()));
