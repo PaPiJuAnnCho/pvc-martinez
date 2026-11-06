@@ -207,9 +207,17 @@
   b.addEventListener('click', () => {
     const paused = v.paused ? (v.play(), false) : (v.pause(), true);
     b.classList.toggle('paused', paused);
+    document.querySelector('.hero').classList.toggle('is-paused', paused);
     b.setAttribute('aria-label', paused ? 'Reproducir video' : 'Pausar video');
   });
 })();
 
 // Oculta los recuadros de video cuyo archivo no está publicado
 document.querySelectorAll('.gv video').forEach(v => v.addEventListener('error', () => v.closest('.gv').remove()));
+
+// En pantallas anchas el hero usa fotos: no gastar datos reproduciendo el video oculto
+(() => {
+  const v = document.getElementById('heroVideo'), mq = matchMedia('(min-width: 901px)');
+  const sync = () => { if (v && mq.matches) v.pause(); else if (v && !document.querySelector('.hero').classList.contains('is-paused')) v.play().catch(() => {}); };
+  mq.addEventListener('change', sync); sync();
+})();
