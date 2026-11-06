@@ -298,3 +298,10 @@ details p{padding:0 24px 22px;color:var(--muted)}
 .swipe{position:absolute;z-index:2;bottom:18px;left:50%;translate:-50% 0;font-size:.72rem;letter-spacing:.12em;color:rgba(255,255,255,.75);font-family:ui-monospace,monospace}
 .scroll-hint{display:none}
 @media(max-width:900px){.hero{padding-bottom:70px}.vpause{top:90px;left:auto;right:16px;translate:none;width:44px;height:44px;opacity:1}}
+
+/* galería en mosaico */
+.gallery{grid-auto-rows:120px;grid-auto-flow:dense}
+.g{aspect-ratio:auto;grid-row:span 2}
+.g.tall{grid-row:span 3}
+.g.wide{grid-row:span 2}
+.g.ph::before{content:""}

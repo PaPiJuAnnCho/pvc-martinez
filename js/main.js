@@ -186,7 +186,7 @@
   lb.addEventListener('click', e => { if (e.target === lb || e.target.matches('.lb-close')) lb.close(); });
 
   const r = $('#baRange'), before = $('#baBefore'), line = $('#baLine');
-  r.addEventListener('input', () => {
+  if (r) r.addEventListener('input', () => {
     before.style.clipPath = `inset(0 ${100 - r.value}% 0 0)`;
     line.style.left = r.value + '%';
   });
