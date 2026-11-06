@@ -221,3 +221,17 @@ document.querySelectorAll('.gv video').forEach(v => v.addEventListener('error', 
   const sync = () => { if (v && mq.matches) v.pause(); else if (v && !document.querySelector('.hero').classList.contains('is-paused')) v.play().catch(() => {}); };
   mq.addEventListener('change', sync); sync();
 })();
+
+// Celular: si el video no arranca solo (ahorro de batería/datos), mostrar las fotos y reintentar al primer toque
+(() => {
+  const hero = document.querySelector('.hero'), v = document.getElementById('heroVideo');
+  if (!hero || !v || matchMedia('(min-width: 901px)').matches) return;
+  const fallback = () => hero.classList.add('no-video');
+  const ok = () => hero.classList.remove('no-video');
+  v.addEventListener('playing', ok);
+  const t = setTimeout(() => { if (v.paused || v.currentTime === 0) fallback(); }, 3000);
+  v.addEventListener('playing', () => clearTimeout(t));
+  const retry = () => v.play().then(ok).catch(() => {});
+  addEventListener('touchstart', retry, { once: true, passive: true });
+  addEventListener('click', retry, { once: true });
+})();

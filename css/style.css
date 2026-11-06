@@ -324,3 +324,10 @@ details p{padding:0 24px 22px;color:var(--muted)}
 }
 @keyframes slide{0%{opacity:0;transform:scale(1)}8%{opacity:1}33%{opacity:1}41%{opacity:0;transform:scale(1.09)}100%{opacity:0;transform:scale(1.09)}}
 @media(prefers-reduced-motion:reduce){.hero-slides i:first-child{opacity:1;animation:none}}
+
+/* respaldo móvil: fotos si el video no reproduce */
+.hero.no-video .hero-video{display:none}
+.hero.no-video .hero-slides{display:block;position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--navy-2)}
+.hero.no-video .hero-slides i{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:slide 18s infinite}
+.hero.no-video .hero-slides i:nth-child(2){animation-delay:6s}
+.hero.no-video .hero-slides i:nth-child(3){animation-delay:12s}
